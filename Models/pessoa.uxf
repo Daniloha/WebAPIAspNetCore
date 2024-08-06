@@ -1,0 +1,15 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>240</x><y>230</y><w>200</w><h>200</h></coordinates><panel_attributes>Pessoa
+--
+- ID: long
+- Nome: string
+- Sobrenome: string
+- Genero: string
+- DataNascimento: DateTime
+- Email: string
+- Telefone: string
+- Cpf: string
+- senha: string
+-
+
+-
+</panel_attributes><additional_attributes></additional_attributes></element></diagram>

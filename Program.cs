@@ -31,6 +31,9 @@ builder.Services.AddDbContext<MySQLContext>(options =>
     .EnableSensitiveDataLogging() // Para logs detalhados
     .EnableDetailedErrors());
 
+// Versionamento da API    
+builder.Services.AddApiVersioning();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

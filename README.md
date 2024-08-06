@@ -75,11 +75,11 @@ dotnet run
 
 Neste primeiro momento, eu criei um projeto WebAPI Asp .Net Core sem a implementação automática do swagger para poder adicionar manualmente no decorrer do projeto. Exclui o WeatherForecast.cs pois pertence ao exemplo criado inicialmente e alterei o nome do Controller para o contexto de minha API.
 
-![Criação do Projeto](bin/img/Img01.jpg)
+![Criação do Projeto](img/Img01.jpg)
 
-Criei a classe Pessoa em Models como formatada em [UML1](pessoa.uxf).
+Criei a classe Pessoa em Models como formatada em [UML1](Models/pessoa.uxf).
 
-![Classe pessoa](bin/img/Img03.jpg)
+![Classe pessoa](img/Img03.jpg)
 
 Criei em seguida a interface e sua implementação contendo os serviços/métodos contidos na classe Pessoa e utilizados pelos verbos no Controller. Os métodos são:
 
@@ -95,7 +95,7 @@ E por fim, configurei o Controller com os métodos criados e testei no Postman.
 
 Nesta etapa eu criei o banco de dados relacional pelo SGBD MySQL, Criei a primeira tabela 'Pessoa' e populei a primeira linha como exemplo/modelo:
 
-![MySQL](bin/img/Img04.jpg)
+![MySQL](img/Img04.jpg)
 
 Em seguida, eu defini as propriedades de conexão, e para isso, eu tive que adicionar uma dependência em meu projeto:
 
@@ -103,11 +103,11 @@ Em seguida, eu defini as propriedades de conexão, e para isso, eu tive que adic
 
 Criei a classe de contexto de ações ORM em Models/Context:
 
-![Context](bin/img/Img05.jpg)
+![Context](img/Img05.jpg)
 
 Defini as configurações de conexão em appsettings.json:
 
-![appsettings.json](bin/img/Img06.jpg)
+![appsettings.json](img/Img06.jpg)
 
 Por fim eu adicionei o serviço de conexão ao meu program.cs e efetuei os testes pelo postman.
 
@@ -115,6 +115,23 @@ Por fim eu adicionei o serviço de conexão ao meu program.cs e efetuei os teste
 
 ### 2º Commit
 
+1. #### Versionamento de Endpoints
+
+Este versionamento tem como principal função, permitir que os endpoints acompanhem as mudanças nas estruturas das entidades do projeto definidas pelo cliente sem sair do ambiente de produção.
+
+2. #### Biblioteca Utilizada
+
+   * [AspNet API Versioning](https://github.com/dotnet/aspnet-api-versioning/blob/main/README.md)
+   * [Microsoft AspNetCore MVC Versioning](https://www.nuget.org/package/Microsoft.AspNetCore.Mvc.Versioning/)
+3. #### Modificações
+
+Em Properties, devemos acrescentar '/v1' as URLs em launchSettings.json/launchUrl.
+
+Existem varias formas de versionar os endpoints do meu projeto por esta biblioteca. Utilizei a forma pelo controller como mostra a imagem abaixo, pois é a utilizada no curso e parece a escolha mais simples.
+
+![Versionamento](img/Img07.jpg)
+
+Por fim, eu adicionei o serviço de versionamento ao program.cs e efetuei os testes no Postman.
 
 ---
 

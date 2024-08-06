@@ -4,8 +4,9 @@ using WebApiCadastro.Models.Services;
 
 namespace WebApiCadastro.Controllers
 {
+    [ApiVersion("1.0")]//Versão da API
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/[controller]/v{version:apiVersion}")]//Rota 
     public class PersonController : ControllerBase
     {
         //Logger de erros
