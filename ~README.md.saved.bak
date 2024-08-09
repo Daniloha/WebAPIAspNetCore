@@ -150,10 +150,4 @@ Para resolver este alto acoplamento, eu adicionarei algumas camadas intermediár
 
 ![Adicionando camadas](img/Img11.jpg)
 
-2. #### Business
 
-	O Business fica responsável pelas regras de negócio entre a chamada pelos endpoints da API e a busca no banco de dados.
-
-3. #### Repository
-
-	Assim que tratadas pelo business, as requisições passam para o Repository onde fará a busca pelo resultado no banco de dados.

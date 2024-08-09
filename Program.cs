@@ -1,19 +1,18 @@
 using WebApiCadastro.Models;
-using WebApiCadastro.Models.Services;
-using WebApiCadastro.Models.Services.Implementations;
 using Microsoft.EntityFrameworkCore;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using WebApiCadastro.Models.Context;
+using WebApiCadastro.Buisness;
+using WebApiCadastro.Buisness.Implementations;
+using WebApiCadastro.Repository;
+using WebApiCadastro.Repository.Implementations;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
-builder.Services.AddControllers();
-
 
 // Registro do serviço IPersonService
-builder.Services.AddScoped<IPersonService, PersonServiceImplementation>();
+builder.Services.AddScoped<IPersonBuisness, PersonBuisnessImplementation>();
+builder.Services.AddScoped<IPersonRepository, PersonRepositoryImplementation>(); // Adiciona o repositório no containe
 
 // Adiciona os controladores ao container
 builder.Services.AddControllers();
