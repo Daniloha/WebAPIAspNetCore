@@ -123,7 +123,7 @@ Por fim eu adicionei o serviço de conexão ao meu program.cs e efetuei os teste
 
 Este versionamento tem como principal função, permitir que os endpoints acompanhem as mudanças nas estruturas das entidades do projeto definidas pelo cliente sem sair do ambiente de produção.
 
-2. #### Biblioteca Utilizada
+2. #### Bibliotecas Utilizadas
 
    * [AspNet API Versioning](https://github.com/dotnet/aspnet-api-versioning/blob/main/README.md)
    * [Microsoft AspNetCore MVC Versioning](https://www.nuget.org/package/Microsoft.AspNetCore.Mvc.Versioning/)
@@ -152,8 +152,40 @@ Para resolver este alto acoplamento, eu adicionarei algumas camadas intermediár
 
 2. #### Business
 
-	O Business fica responsável pelas regras de negócio entre a chamada pelos endpoints da API e a busca no banco de dados.
+O Business fica responsável pelas regras de negócio entre a chamada pelos endpoints da API e a busca no banco de dados.
 
 3. #### Repository
 
-	Assim que tratadas pelo business, as requisições passam para o Repository onde fará a busca pelo resultado no banco de dados.
+Assim que tratadas pelo business, as requisições passam para o Repository onde fará a busca pelo resultado no banco de dados.
+	
+---
+
+### 4º Commit
+
+1. #### Aplicando Migrations
+   
+Aplicar migrations na aplicação, possibilita o versionamento de meus modelos em bancos de dados para alterar ou restaurar versões diferentes de tabelas/entidades.
+Podemos criar versões diferentes adicionando colunas/atributos, removendo ou editando e depois restaurar se necessário.
+   
+2. #### Nugets Utilizadas
+
+* [Evolve](https://www.nuget.org/packages/Evolve/3.2.0)
+* [Serilog](https://www.nuget.org/packages/Serilog/4.0.1)
+* [Serilog.AspNetCore](https://www.nuget.org/packages/Serilog.AspNetCore/8.0.2)
+* [Serilog.Sinks.Console](https://www.nuget.org/packages/Serilog.Sinks.Console/6.0.0)
+
+3. #### Implementação
+    
+Após a instalação dos Nugets, eu iniciei a implementação criando as tabelas para migrate com os modelos e em dataset para popular.
+    
+    ![db](img/Img12.jpg)
+    
+Em seguida eu criei a entidade livros, bem como o seu controler, repository e business e configurei as migrations o program.cs
+    
+---
+    
+ ### 5º Commit
+ 
+ 
+
+   

@@ -8,8 +8,10 @@ namespace WebApiCadastro.Models.Context
         public MySQLContext() { }
         public MySQLContext(DbContextOptions<MySQLContext> options) : base(options) { }
         public DbSet<Pessoa> Pessoas { get; set; }
+        public DbSet<Livros> Biblioteca { get; set; }
 
 
-        
+
+
     }
 }
