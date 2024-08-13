@@ -4,21 +4,21 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebApiCadastro.Models;
 using WebApiCadastro.Models.Context;
-using WebApiCadastro.Repository.Implementations;
 using Microsoft.EntityFrameworkCore;
 using WebApiCadastro.Repository;
+using WebApiCadastro.Repository.Generic;
 
 
 
-namespace WebApiCadastro.Buisness.Implementations
+namespace WebApiCadastro.Business.Implementations
 {
-    public class PersonBuisnessImplementation : IPersonBuisness
+    public class PersonBuisnessImplementation : IPersonBusiness
     {
         // = new MySQLContext();
         
-        private readonly IPersonRepository _repository;
+        private readonly IRepository<Pessoa> _repository;
 
-        public PersonBuisnessImplementation( IPersonRepository repository)
+        public PersonBuisnessImplementation(IRepository<Pessoa> repository)
         {
             _repository = repository;
         }

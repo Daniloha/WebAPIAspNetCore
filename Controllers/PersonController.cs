@@ -1,6 +1,6 @@
 using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
-using WebApiCadastro.Buisness;
+using WebApiCadastro.Business;
 using WebApiCadastro.Models;
 
 namespace WebApiCadastro.Controllers
@@ -15,9 +15,9 @@ namespace WebApiCadastro.Controllers
         private readonly ILogger<PersonController> _logger;
 
         //Serviço de dados
-        private IPersonBuisness _personBuisness;
+        private IPersonBusiness _personBuisness;
 
-        public PersonController(ILogger<PersonController> logger, IPersonBuisness personBusiness)
+        public PersonController(ILogger<PersonController> logger, IPersonBusiness personBusiness)
         {
             _logger = logger;
             _personBuisness = personBusiness;

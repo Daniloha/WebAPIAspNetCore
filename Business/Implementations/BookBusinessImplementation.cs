@@ -1,6 +1,6 @@
 ﻿using WebApiCadastro.Models;
 using WebApiCadastro.Repository;
-using WebApiCadastro.Repository.Implementations;
+using WebApiCadastro.Repository.Generic;
 
 
 namespace WebApiCadastro.Business.Implementations
@@ -9,9 +9,9 @@ namespace WebApiCadastro.Business.Implementations
     {
         // = new MySQLContext();
 
-        private readonly IBookRepository _repository;
+        private readonly IRepository<Livros> _repository;
 
-        public BookBusinessImplementation(IBookRepository repository)
+        public BookBusinessImplementation(IRepository<Livros> repository)
         {
             _repository = repository;
         }

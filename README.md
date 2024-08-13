@@ -178,7 +178,7 @@ Podemos criar versões diferentes adicionando colunas/atributos, removendo ou ed
     
 Após a instalação dos Nugets, eu iniciei a implementação criando as tabelas para migrate com os modelos e em dataset para popular.
     
-    ![db](img/Img12.jpg)
+   ![db](img/Img12.jpg)
     
 Em seguida eu criei a entidade livros, bem como o seu controler, repository e business e configurei as migrations o program.cs
     
@@ -186,6 +186,25 @@ Em seguida eu criei a entidade livros, bem como o seu controler, repository e bu
     
  ### 5º Commit
  
+ 1. #### Generic Repository
+ 
+ O objetivo deste repositório é reduzir a quantidade de códigos, ao invés de criar um repositorio para cada entidade, utilizamos um unico repositório genérico que será usado para todos, adicionando apenas particularidades em uma interface se necessário.
+ 
+ 2. #### Passo a Passo
+ 
+* Primeiro eu exclui o repositório de Pessoas e Livros com suas implementações. Em seguida criei a pasta Generic com GenericRepository e IRepository.
+
+* Em seguida eu modifiquei os BusinessImplementations para utilizar  o IRepository.
+
+* Criei uma pasta Base em Models e criei a BaseEntity nela. em seguida modifiquei as entidades Livros e Pessoa para herdae a BaseEntity.
+
+* Por fim, adaptei as injeções de dependência em Program.cs e efetuei os testes no Postman.
+
+---
+
+### 6º Commit
+ 
  
 
-   
+
+

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using WebApiCadastro.Models;
 
 
-namespace WebApiCadastro.Buisness
+namespace WebApiCadastro.Business
 {
-    public interface IPersonBuisness
+    public interface IPersonBusiness
     {
         Pessoa Create(Pessoa pessoa);
         Pessoa FindByID(long id);
