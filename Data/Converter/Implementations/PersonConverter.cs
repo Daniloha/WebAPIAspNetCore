@@ -17,6 +17,7 @@ namespace WebApiCadastro.Data.Converter.Implementations
                 Genero = origin.Genero,
                 DataNascimento = origin.DataNascimento,
                 Email = origin.Email,
+                Telefone = origin.Telefone,
                 Cpf = origin.Cpf,
                 senha = origin.senha
             };
@@ -34,6 +35,7 @@ namespace WebApiCadastro.Data.Converter.Implementations
                 Genero = origin.Genero,
                 DataNascimento = origin.DataNascimento,
                 Email = origin.Email,
+                Telefone = origin.Telefone,
                 Cpf = origin.Cpf,
                 senha = origin.senha
             };

@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WebApiCadastro.Models;
 using WebApiCadastro.Models.Base;
 using WebApiCadastro.Models.Context;
 
@@ -17,7 +16,7 @@ namespace WebApiCadastro.Repository.Generic
             _context = context;
             _dataset = _context.Set<T>();
         }
-        public T Create(T item)
+        T IRepository<T>.Create(T item)
         {
             try
             {

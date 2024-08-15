@@ -9,6 +9,8 @@ using WebApiCadastro.Repository.Generic;
 
 
 
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -19,6 +21,7 @@ builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>)); 
 
 // Adiciona os controladores ao container
 builder.Services.AddControllers();
+
 
 // Obtém a string de conexão corretamente
 var connection = builder.Configuration.GetConnectionString("DefaultConnection");
