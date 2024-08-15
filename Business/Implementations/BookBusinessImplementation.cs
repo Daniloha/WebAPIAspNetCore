@@ -1,5 +1,6 @@
-﻿using WebApiCadastro.Models;
-using WebApiCadastro.Repository;
+﻿using WebApiCadastro.Data.Converter.Implementations;
+using WebApiCadastro.Data.VO;
+using WebApiCadastro.Models;
 using WebApiCadastro.Repository.Generic;
 
 
@@ -10,16 +11,20 @@ namespace WebApiCadastro.Business.Implementations
         // = new MySQLContext();
 
         private readonly IRepository<Livros> _repository;
+        private readonly BookConverter _converter;
 
         public BookBusinessImplementation(IRepository<Livros> repository)
         {
             _repository = repository;
+            _converter = new BookConverter();     
         }
 
-        public Livros Create(Livros livro)
+        public LivrosVO Create(LivrosVO livro)
         {
 
-            return _repository.Create(livro);
+            var bookEntity = _converter.Parse(livro);
+            bookEntity = _repository.Create(bookEntity);
+            return _converter.Parse(bookEntity);
         }
 
         public void Delete(long id)
@@ -29,22 +34,24 @@ namespace WebApiCadastro.Business.Implementations
 
         }
 
-        public List<Livros> FindAll()
+        public List<LivrosVO> FindAll()
         {
 
-            return _repository.FindAll();
+            return _converter.Parse(_repository.FindAll());
         }
 
-        public Livros FindByID(long id)
+        public LivrosVO FindByID(long id)
         {
-            return _repository.FindByID(id);
+            return _converter.Parse(_repository.FindByID(id));
 
         }
 
-        public Livros Update(Livros livro)
+        public LivrosVO Update(LivrosVO livro)
         {
 
-            return _repository.Update(livro);
+            var bookEntity = _converter.Parse(livro);
+            bookEntity = _repository.Update(bookEntity);
+            return _converter.Parse(bookEntity);
         }
     }
 }

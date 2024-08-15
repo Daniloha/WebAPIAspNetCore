@@ -203,6 +203,13 @@ Em seguida eu criei a entidade livros, bem como o seu controler, repository e bu
 ---
 
 ### 6º Commit
+
+1. #### Value Object (VO)
+...
+
+---
+
+### 7º Commit
  
  
 

@@ -1,12 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using WebApiCadastro.Models;
-using WebApiCadastro.Models.Context;
-using Microsoft.EntityFrameworkCore;
-using WebApiCadastro.Repository;
 using WebApiCadastro.Repository.Generic;
+using WebApiCadastro.Data.VO;
+using WebApiCadastro.Data.Converter.Implementations;
 
 
 
@@ -17,16 +12,19 @@ namespace WebApiCadastro.Business.Implementations
         // = new MySQLContext();
         
         private readonly IRepository<Pessoa> _repository;
+        private readonly PersonConverter _converter;
 
         public PersonBuisnessImplementation(IRepository<Pessoa> repository)
         {
             _repository = repository;
+            _converter = new PersonConverter();
         }
 
-        public Pessoa Create(Pessoa pessoa)
+        public PessoaVO Create(PessoaVO pessoa)
         {
-        
-            return _repository.Create(pessoa);
+            var personEntity = _converter.Parse(pessoa);
+            personEntity = _repository.Create(personEntity);
+            return _converter.Parse(personEntity);
         }
 
         public void Delete(long id)
@@ -36,22 +34,23 @@ namespace WebApiCadastro.Business.Implementations
             
         }
 
-        public List<Pessoa> FindAll()
+        public List<PessoaVO> FindAll()
         {
       
-            return    _repository.FindAll();
+            return    _converter.Parse(_repository.FindAll());
         }
 
-        public Pessoa FindByID(long id)
+        public PessoaVO FindByID(long id)
         {
-            return    _repository.FindByID(id);
-
+            return _converter.Parse(_repository.FindByID(id));
         }
 
-        public Pessoa Update(Pessoa pessoa)
-        { 
-           
-            return    _repository.Update(pessoa);
+        public PessoaVO Update(PessoaVO pessoa)
+        {
+
+            var personEntity = _converter.Parse(pessoa);
+            personEntity = _repository.Update(personEntity);
+            return _converter.Parse(personEntity);
         }
     }
 }

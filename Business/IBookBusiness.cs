@@ -1,13 +1,13 @@
-﻿using WebApiCadastro.Models;
+﻿using WebApiCadastro.Data.VO;
 
 namespace WebApiCadastro.Business
 {
     public interface IBookBusiness
     {
-        Livros Create(Livros livro);
-        Livros FindByID(long id);
-        Livros Update(Livros livro);
+        LivrosVO Create(LivrosVO livro);
+        LivrosVO FindByID(long id);
+        LivrosVO Update(LivrosVO livro);
         void Delete(long id);
-        List<Livros> FindAll();
+        List<LivrosVO> FindAll();
     }
 }

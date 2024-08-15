@@ -1,17 +1,15 @@
-using System;
-using System.Collections.Generic;
-using WebApiCadastro.Models;
+using WebApiCadastro.Data.VO;
 
 
 namespace WebApiCadastro.Business
 {
     public interface IPersonBusiness
     {
-        Pessoa Create(Pessoa pessoa);
-        Pessoa FindByID(long id);
-        Pessoa Update(Pessoa pessoa);
+        PessoaVO Create(PessoaVO pessoa);
+        PessoaVO FindByID(long id);
+        PessoaVO Update(PessoaVO pessoa);
         void Delete(long id);
-        List<Pessoa> FindAll();
+        List<PessoaVO> FindAll();
 
 
     }

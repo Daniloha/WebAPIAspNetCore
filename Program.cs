@@ -1,8 +1,5 @@
-using WebApiCadastro.Models;
 using Microsoft.EntityFrameworkCore;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using WebApiCadastro.Models.Context;
-using WebApiCadastro.Repository;
 using EvolveDb;
 using MySqlConnector;
 using Serilog;

@@ -1,6 +1,7 @@
 using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
 using WebApiCadastro.Business;
+using WebApiCadastro.Data.VO;
 using WebApiCadastro.Models;
 
 namespace WebApiCadastro.Controllers
@@ -48,7 +49,7 @@ namespace WebApiCadastro.Controllers
         }
 
         [HttpPost]// Cria um novo dado
-        public IActionResult Post([FromBody] Pessoa pessoa)
+        public IActionResult Post([FromBody] PessoaVO pessoa)
         {
             if (pessoa == null) return BadRequest();
 
@@ -56,7 +57,7 @@ namespace WebApiCadastro.Controllers
         }
 
         [HttpPut]// Atualiza um dado
-        public IActionResult Put([FromBody] Pessoa pessoa)
+        public IActionResult Put([FromBody] PessoaVO pessoa)
         {
             if (pessoa == null) return BadRequest();
             return Ok(_personBuisness.Update(pessoa));
