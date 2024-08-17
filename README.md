@@ -210,6 +210,13 @@ Em seguida eu criei a entidade livros, bem como o seu controler, repository e bu
 ---
 
 ### 7º Commit
+
+1. #### Content Negociation
+...
+
+---
+
+### 8º Commit
  
  
 

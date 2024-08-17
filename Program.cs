@@ -6,6 +6,7 @@ using Serilog;
 using WebApiCadastro.Business;
 using WebApiCadastro.Business.Implementations;
 using WebApiCadastro.Repository.Generic;
+using Microsoft.Net.Http.Headers;
 
 
 
@@ -41,6 +42,16 @@ if (builder.Environment.IsDevelopment())
 {
     MigrateDatabase(connection!);
 }
+
+builder.Services.AddMvc(options =>
+{
+    options.RespectBrowserAcceptHeader = true;
+
+    options.FormatterMappings.SetMediaTypeMappingForFormat("xml", MediaTypeHeaderValue.Parse("aplication/xml"));
+    options.FormatterMappings.SetMediaTypeMappingForFormat("json", MediaTypeHeaderValue.Parse("aplication/json"));
+
+}
+).AddXmlSerializerFormatters();
 
 // Versionamento da API    
 builder.Services.AddApiVersioning();
