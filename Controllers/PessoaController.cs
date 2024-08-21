@@ -2,29 +2,31 @@ using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
 using WebApiCadastro.Business;
 using WebApiCadastro.Data.VO;
+using WebApiCadastro.HyperMedia.Filters;
 using WebApiCadastro.Models;
 
 namespace WebApiCadastro.Controllers
 {
 
 
-    [ApiVersion("1.0")]// Versão da API    [ApiController]// Controlador
+    [ApiVersion("1")]// Versão da API    [ApiController]// Controlador
     [Route("api/[controller]/v{version:apiVersion}")]// Rota
-    public class PersonController : ControllerBase
+    public class PessoaController : ControllerBase
     {
         //Logger de logs de erros
-        private readonly ILogger<PersonController> _logger;
+        private readonly ILogger<PessoaController> _logger;
 
         //Serviço de dados
         private IPersonBusiness _personBuisness;
 
-        public PersonController(ILogger<PersonController> logger, IPersonBusiness personBusiness)
+        public PessoaController(ILogger<PessoaController> logger, IPersonBusiness personBusiness)
         {
             _logger = logger;
             _personBuisness = personBusiness;
         }
 
         [HttpGet]// Retorna todos os dados
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get()
         {
             try
@@ -38,6 +40,7 @@ namespace WebApiCadastro.Controllers
             }
         }
         [HttpGet("{ID}")]// Retorna apenas um dado
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get(long ID)
         {
             var pessoa = _personBuisness.FindByID(ID);
@@ -49,6 +52,7 @@ namespace WebApiCadastro.Controllers
         }
 
         [HttpPost]// Cria um novo dado
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Post([FromBody] PessoaVO pessoa)
         {
             if (pessoa == null) return BadRequest();
@@ -57,6 +61,7 @@ namespace WebApiCadastro.Controllers
         }
 
         [HttpPut]// Atualiza um dado
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Put([FromBody] PessoaVO pessoa)
         {
             if (pessoa == null) return BadRequest();

@@ -3,10 +3,11 @@ using WebApiCadastro.Models;
 using Microsoft.AspNetCore.Mvc;
 using Asp.Versioning;
 using WebApiCadastro.Data.VO;
+using WebApiCadastro.HyperMedia.Filters;
 
 namespace WebApiCadastro.Controllers
 {
-    [ApiVersion("2.0")]// Versão da API    [ApiController]// Controlador
+    [ApiVersion("1")]// Versão da API    [ApiController]// Controlador
     [Route("api/[controller]/v{version:apiVersion}")]// Rota
     public class LivrosController : ControllerBase
     {
@@ -24,6 +25,7 @@ namespace WebApiCadastro.Controllers
         }
 
         [HttpGet]// Retorna todos os dados
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get()
         {
             try
@@ -37,6 +39,7 @@ namespace WebApiCadastro.Controllers
             }
         }
         [HttpGet("{ID}")]// Retorna apenas um dado
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get(long ID)
         {
             var livro = _bookBusiness.FindByID(ID);
@@ -48,6 +51,7 @@ namespace WebApiCadastro.Controllers
         }
 
         [HttpPost]// Cria um novo dado
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Post([FromBody] LivrosVO livro)
         {
             if (livro == null) return BadRequest();
@@ -56,6 +60,7 @@ namespace WebApiCadastro.Controllers
         }
 
         [HttpPut]// Atualiza um dado
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Put([FromBody] LivrosVO livro)
         {
             if (livro == null) return BadRequest();

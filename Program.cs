@@ -7,6 +7,9 @@ using WebApiCadastro.Business;
 using WebApiCadastro.Business.Implementations;
 using WebApiCadastro.Repository.Generic;
 using Microsoft.Net.Http.Headers;
+using WebApiCadastro.HyperMedia.Filters;
+using WebApiCadastro.HyperMedia.Enricher;
+using Microsoft.AspNetCore.Builder;
 
 
 
@@ -53,6 +56,12 @@ builder.Services.AddMvc(options =>
 }
 ).AddXmlSerializerFormatters();
 
+var filterOptions = new HyperMediaFilterOptions();
+filterOptions.ContentResponseEnricherList.Add(new PessoaEnricher());
+filterOptions.ContentResponseEnricherList.Add(new LivrosEnricher());
+
+builder.Services.AddSingleton(filterOptions); // Adiciona o repositório no container
+
 // Versionamento da API    
 builder.Services.AddApiVersioning();
 
@@ -65,6 +74,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapControllerRoute("DefaultApi", "{controller=values}/v{version=apiVersion}/{id?}");
 
 app.Run();
 

@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using WebApiCadastro.HyperMedia;
+using WebApiCadastro.HyperMedia.Abstract;
 
 
 namespace WebApiCadastro.Data.VO
 {
     [Table("livros")]
-    public class LivrosVO 
+    public class LivrosVO : ISupportHiperMedia
     {
     
         public long ID { get; set; }
@@ -16,5 +18,6 @@ namespace WebApiCadastro.Data.VO
         public string? Editora { get; set; }
         public int Quantidade { get; set; }
         public float Valor { get; set; }
+        public List<HyperMediaLink> Links { get; set; } = new List<HyperMediaLink>();
     }
 }
