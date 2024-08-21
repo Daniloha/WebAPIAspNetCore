@@ -1,0 +1,12 @@
+CREATE TABLE IF NOT EXISTS `pessoa`(
+    `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+    `Nome` VARCHAR(100) NOT NULL,
+    `Sobrenome` VARCHAR(100) NOT NULL,
+    `Genero` VARCHAR(100) NOT NULL,
+    `DataNascimento` DATE NOT NULL,
+    `Email` VARCHAR(100) NOT NULL,
+    `Telefone` VARCHAR(100) NOT NULL,
+    `Cpf` VARCHAR(100) NOT NULL,
+    `Senha` VARCHAR(100) NOT NULL,
+    PRIMARY KEY(`ID`)
+)
