@@ -217,7 +217,19 @@ Em seguida eu criei a entidade livros, bem como o seu controler, repository e bu
 ---
 
 ### 8º Commit
+1. #### HATEAOS
+ ...
  
+ ___
+ 
+### 9º Commit
+1. #### Swagger e CORS
+...
+
+---
+
+### 10º Commit
+
  
 
 

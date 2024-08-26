@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using WebApiCadastro.Business;
 using WebApiCadastro.Data.VO;
 using WebApiCadastro.HyperMedia.Filters;
-using WebApiCadastro.Models;
 
 namespace WebApiCadastro.Controllers
 {
@@ -26,6 +25,10 @@ namespace WebApiCadastro.Controllers
         }
 
         [HttpGet]// Retorna todos os dados
+        [ProducesResponseType((200), Type = typeof(List<PessoaVO>))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get()
         {
@@ -40,6 +43,9 @@ namespace WebApiCadastro.Controllers
             }
         }
         [HttpGet("{ID}")]// Retorna apenas um dado
+        [ProducesResponseType((200), Type = typeof(PessoaVO))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get(long ID)
         {
@@ -52,6 +58,10 @@ namespace WebApiCadastro.Controllers
         }
 
         [HttpPost]// Cria um novo dado
+        [ProducesResponseType((200), Type = typeof(PessoaVO))]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Post([FromBody] PessoaVO pessoa)
         {
@@ -61,6 +71,9 @@ namespace WebApiCadastro.Controllers
         }
 
         [HttpPut]// Atualiza um dado
+        [ProducesResponseType((200), Type = typeof(PessoaVO))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Put([FromBody] PessoaVO pessoa)
         {
@@ -69,6 +82,9 @@ namespace WebApiCadastro.Controllers
         }
 
         [HttpDelete("{ID}")]// Deleta um dado
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(401)]
         public IActionResult Delete(long ID)
         {
             if (ID <= 0) return BadRequest();

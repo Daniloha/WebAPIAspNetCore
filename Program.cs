@@ -10,6 +10,8 @@ using Microsoft.Net.Http.Headers;
 using WebApiCadastro.HyperMedia.Filters;
 using WebApiCadastro.HyperMedia.Enricher;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.OpenApi.Models;
+using Microsoft.AspNetCore.Rewrite;
 
 
 
@@ -18,11 +20,20 @@ using Microsoft.AspNetCore.Builder;
 var builder = WebApplication.CreateBuilder(args);
 
 
+builder.Services.AddCors(options => options.AddDefaultPolicy(builder =>
+{
+    builder
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader();
+}
+));
 // Injeção de dependências
 builder.Services.AddScoped<IPersonBusiness, PersonBuisnessImplementation>();
 builder.Services.AddScoped<IBookBusiness, BookBusinessImplementation>(); // Adiciona o repositório no containe
 builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>)); // Adiciona o repositório no containe (GenericRepo);
 
+builder.Services.AddRouting();
 // Adiciona os controladores ao container
 builder.Services.AddControllers();
 
@@ -65,11 +76,43 @@ builder.Services.AddSingleton(filterOptions); // Adiciona o repositório no conta
 // Versionamento da API    
 builder.Services.AddApiVersioning();
 
+builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1",
+        new OpenApiInfo { Title = "WebApiCadastro",
+                          Version = "v1",
+                          Description = "API para cadastro de pessoas e livros",
+                          Contact = new OpenApiContact
+                          {
+                              Name = "Danilo",
+                              Email = "danilo.h.araujo@gmail.com",
+                              Url = new Uri("https://github.com/Daniloha/WebAPIAspNetCore")
+                          }
+        });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
 app.UseHttpsRedirection();
+
+app.UseRouting();
+
+app.UseCors();
+
+app.UseSwagger();
+
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json",
+        "WebApiCadastro v1");
+});
+var option = new RewriteOptions().AddRedirect("^$", "/swagger");
+
+app.UseRewriter(option);
 
 app.UseAuthorization();
 
